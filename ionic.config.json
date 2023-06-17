@@ -1,0 +1,7 @@
+{
+  "name": "filmbox",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
