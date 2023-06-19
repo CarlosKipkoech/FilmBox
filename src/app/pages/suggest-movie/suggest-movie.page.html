@@ -1,0 +1,57 @@
+
+<ion-content fullscreen>
+  <ion-button expand="full" (click)="openForm()">
+    <ion-icon name="add"></ion-icon>
+    Suggest
+  </ion-button>
+
+
+  <div class="overflow-x-auto">
+    <table class="table-auto w-full">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Movie Type</th>
+          <th class="px-4 py-2">Reason</th>
+          <th class="px-4 py-2">Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let suggestion of suggestedMovies">
+          <tr>
+            <td class="border px-4 py-2">{{ suggestion.movieType }}</td>
+            <td class="border px-4 py-2">{{ suggestion.reason }}</td>
+            <td class="border px-4 py-2">
+              <img [src]="suggestion.image" alt="Suggested Image" class="w-16 h-16">
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <ion-card *ngIf="showForm" class="bg-white rounded-lg p-6">
+    <ion-card-header class="text-xl font-semibold mb-4">Suggestion Form</ion-card-header>
+    <ion-card-content>
+      <ion-item class="mb-4">
+        <ion-label>Movie Type</ion-label>
+        <ion-select [(ngModel)]="movieType" class="w-full">
+          <ion-select-option value="suggest-new-movie">Suggest New Movie</ion-select-option>
+          <ion-select-option value="suggest-part-two">Suggest Part Two</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="mb-4">
+        <ion-label>Reason</ion-label>
+        <ion-input type="text" [(ngModel)]="reason" class="w-full"></ion-input>
+      </ion-item>
+      <div class="mb-4">
+        <label class="block">Image Upload</label>
+        <input type="file" (change)="handleFileInput($event)" class="w-full">
+      </div>
+      <ion-button expand="full" (click)="submitForm()" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold">
+        Submit
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+  
+  
+</ion-content>

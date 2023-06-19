@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,23 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  isSidebarExpanded = false;
+
+
+  //Handle click events for sidebar navigations
+  constructor(private router: Router) {}
+
+
+  //navigates to relevant page
+  navigateTo(page: string){
+
+    this.router.navigateByUrl(`/home/${page}`);
+   this.isSidebarExpanded = false; // Close the side navigation after navigation
+
+  }
+
+   toggleSidebar() {
+    this.isSidebarExpanded = !this.isSidebarExpanded;
+  }
 
 }
