@@ -22,37 +22,35 @@ export class LatestMoviesPage implements OnInit {
 
   ngOnInit() {
 
-   this.fetchMovies();
+   this.loadMovies();
   }
 
-  fetchMovies() {
-    this.apiService.getUpcomingMovies().subscribe(
-      (res) => {
-        // Handle the retrieved data here
-        this.movies.push(...res.results);
-        this.getMoreMovies(res.next);
-      },
-      (error) => {
-        // Handle any error that occurred
-        console.error(error);
-      }
-    );
+
+  loadMovies() {
+    this.apiService.getUpcomingMovies(this.currentPage).subscribe((res) => {
+      // Handle the response data
+      this.movies.push(...res.results);
+    });
   }
+
+
   
-  getMoreMovies(nextUrl: string | null) {
-    if (nextUrl) {
-      this.apiService.getMoreMovies(nextUrl).subscribe(
-        (res) => {
-          // Handle the retrieved data here
-          this.movies.push(...res.results);
-          this.getMoreMovies(res.next); // Call the function recursively
-        },
-        (error) => {
-          // Handle any error that occurred
-          console.error(error);
-        }
-      );
-    }
+  loadMoreMovies(event:any) {
+    this.currentPage++;
+    this.apiService.getUpcomingMovies(this.currentPage).subscribe((data) => {
+      // Append the new results to the existing results
+      this.movies.push(...data.results);
+
+      // Update the UI accordingly
+  
+      // Mark the infinite scroll as complete
+      event.target.complete();
+  
+      // Disable the infinite scroll if there are no more results
+      if (!data.next) {
+        event.target.disabled = true;
+      }
+    });
   }
 
   

@@ -13,6 +13,13 @@
           </div>
         </div>
       </ion-card>
+
+      <ion-infinite-scroll (ionInfinite)="loadMoreMovies($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading more movies...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
     </div>
   </div>
 </ion-content>

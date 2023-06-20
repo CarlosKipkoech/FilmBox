@@ -24,8 +24,8 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
 
-  getUpcomingMovies():Observable<ApiResult> {
-    const url = 'https://moviesdatabase.p.rapidapi.com/titles/x/upcoming';
+  getUpcomingMovies(page: number): Observable<ApiResult> {
+    const url = `https://moviesdatabase.p.rapidapi.com/titles/x/upcoming?page=${page}`;
     const headers = {
       'X-RapidAPI-Key': '650dbe08b6msh67af47a89fe2d43p1cdbfdjsna6743fa4f9cd',
       'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
