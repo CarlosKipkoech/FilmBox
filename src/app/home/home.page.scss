@@ -1,33 +1,47 @@
 
 
-ion-header {
-  ion-toolbar {
+header {
+  
     z-index: 1;
-  }
+  
 }
-
-ion-content { 
-  --ion-padding-top: 56px; /* Adjust the padding value if needed */
-  position: relative;
-  z-index: 1;
-}
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -250px; /* Sidebar starts off-screen */
-  bottom: 0;
-  width: 250px;
-  background-color: #0c696a;
+section { 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 2;
-  overflow-y: auto;
-  transition: left 0.3s ease-in-out;
 }
 
+.logo-image {
+  width: 33px;
+  height: auto;
+  max-height: 100%;
+}
+ion-label {
+  font-family: 'font-sans', sans-serif ;
+}
+
+ion-content {
+  --background: linear-gradient(180deg,  #053f5c, #053f5c,  #195675);
+
+}
+
+ion-icon {
+  color: rgb(229, 229, 229);
+}
+
+ion-menu {
+  --ion-background-color: #053f5c;
+  
+}
+
+ion-item {
+  border-radius: 5px;
+  margin-inline: 7px;
+}
 
 
 ion-item:hover {
-  background-color: #f0f0f0;
+  background-color: #225f7d;
+  --color: #0d5172 !important;
 }
 
 
@@ -36,26 +50,7 @@ ion-content {
   --ion-background-color: ;
 }
 
-.overlay.expanded {
-  display: block;
-}
 
-.expanded {
-  width: 290px;
 
-}
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(2, 94, 83); /* Adjust the overlay color and opacity as desired */
-  display: none;
-  z-index: 2;
-}
 
-.expanded + .overlay {
-  display: block;
-}

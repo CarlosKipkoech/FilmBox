@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { LatestMoviesPageRoutingModule } from './latest-movies-routing.module';
 import { ApiService } from '../../services/api.service';
+import { SwahiliTranslatePipe } from 'src/app/pipes/swahili-translate.pipe';
 
 import { LatestMoviesPage } from './latest-movies.page';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,7 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     
   ],
-  declarations: [LatestMoviesPage],
+  declarations: [LatestMoviesPage,SwahiliTranslatePipe],
   providers: [ApiService]
   
 })

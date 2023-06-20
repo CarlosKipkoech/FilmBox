@@ -33,4 +33,13 @@ export class ApiService {
     return this.http.get<ApiResult>(url, { headers });
   }
 
+  getMoreMovies(pageString: string):Observable<ApiResult> {
+    const url = `https://moviesdatabase.p.rapidapi.com${pageString}`;
+    const headers = {
+      'X-RapidAPI-Key': '650dbe08b6msh67af47a89fe2d43p1cdbfdjsna6743fa4f9cd',
+      'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+    };
+    return this.http.get<ApiResult>(url, { headers });
+  }
+
 }

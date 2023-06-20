@@ -1,17 +1,18 @@
-
-<ion-content fullscreen class="content-no-scrollbar">
-  <div class="ion-padding">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-      <div *ngFor="let item of movies" class="bg-white shadow-lg rounded-lg p-2">
-        <div class="aspect-w-3 aspect-h-4">
-          <img [src]="item.primaryImage.url" alt="{{ item.primaryImage.caption.plainText }}" class="object-cover w-full h-full rounded-t-lg" />
+<ion-content>
+  <div class="ion-padding px-11 pt-3">
+    <p class="font-sans text-2xl ms-4 text-gray-500">Upcoming movies</p>
+    <div class="grid grid-cols-1 pt-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <ion-card *ngFor="let item of movies" class="bg-transparent mt-3">
+        <div class="card-background" [ngStyle]="{ 'background-image': 'url(' + (item.primaryImage && item.primaryImage.url ? item.primaryImage.url : 'assets/images/noimage.jpg') + ')' }">
+          <div class="overlay">
+            <div class="card-label ms-3 mt-2 font-sans">{{ item.titleType.text }}</div>
+            <div class="card-content justify-start">
+              <h2 class="text-xl justify-start font-sans font-semibold mb-2">{{ item.titleText.text | swahiliTranslate }}</h2>
+              <p class="text-gray-500">{{ item.releaseYear.year }}</p>
+            </div>
+          </div>
         </div>
-        <div class="p-4">
-          <h2 class="text-lg font-bold mb-2">{{ item.titleText.text }}</h2>
-          <p class="text-gray-500">{{ item.description }}</p>
-        </div>
-      </div>
+      </ion-card>
     </div>
   </div>
 </ion-content>
-

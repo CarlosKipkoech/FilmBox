@@ -27,6 +27,8 @@
     "@capacitor/keyboard": "5.0.4",
     "@capacitor/status-bar": "5.0.4",
     "@ionic/angular": "^7.0.0",
+    "@ionic/storage-angular": "^4.0.0",
+    "font-awesome": "^4.7.0",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -68,7 +70,7 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "ngx-tailwind": "^4.0.0",
     "postcss": "^8.4.14",
-    "tailwindcss": "^3.1.6",
+    "tailwindcss": "^3.3.2",
     "ts-node": "^8.3.0",
     "typescript": "~5.0.2"
   },

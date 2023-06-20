@@ -1,23 +1,30 @@
 <ion-content fullscreen class="ion-padding">
-  <ion-searchbar  placeholder="Search for a movie" [(ngModel)]="searchTerm" (ionChange)="searchMovies(searchTerm)"></ion-searchbar>
+  <ion-searchbar #searchBar placeholder="Search for a movie" (ionChange)="isTyping = searchBar.value?.trim() !== ''; searchBar.value && searchTerm.next(searchBar.value)"></ion-searchbar>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-6 mt-6">
-    <ng-container *ngIf="movies && movies.length > 0; else noResults">
-      <ion-card *ngFor="let movie of movies" class="bg-white">
-        <div class="relative aspect-w-2 aspect-h-3">
-          <ion-img [src]="movie.Poster" alt="Movie Poster" class="object-cover w-full h-full"></ion-img>
-        </div>
-        <ion-card-header>
-          <ion-card-title class="text-xl font-bold">{{ movie.Title }}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <p class="text-sm">{{ movie.Year }}</p>
-          <p class="text-sm">{{ movie.Type }}</p>
-        </ion-card-content>
+    <ng-container *ngIf="movies && movies.length > 0; else skeletonLoader">
+      <!-- Display search results -->
+       <ion-card *ngFor="let movie of movies" class="bg-white">
+        <div class="aspect-w-3 aspect-h-4">
+            <ion-img [src]="movie.Poster" alt="Movie Poster" class="object-cover w-full h-full"></ion-img>
+          </div>
+          <ion-card-header>
+            <ion-card-title class="text-xl font-bold">{{ movie.Title }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p class="text-sm">{{ movie.Year }}</p>
+            <p class="text-sm">{{ movie.Type }}</p>
+          </ion-card-content>
       </ion-card>
     </ng-container>
-    <ng-template #noResults>
-      <p class="text-center">No results found.</p>
+    <ng-template #skeletonLoader>
+      <!-- Display skeleton loader while typing -->
+      <ng-container *ngIf="isTyping">
+        <ion-card *ngFor="let _ of [1, 2, 3, 4, 5, 6, 7, 8]" class="bg-white">
+          <ion-skeleton-text animated style="height: 130px;"></ion-skeleton-text>
+        </ion-card>
+      </ng-container>
+      <p class="text-center" *ngIf="!isTyping">No results found.</p>
     </ng-template>
   </div>
 </ion-content>
