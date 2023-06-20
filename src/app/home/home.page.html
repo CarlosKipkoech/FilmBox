@@ -3,12 +3,30 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <div class="flex justify-center ">
-      <img src="{{ logoImagePath }}" alt="Logo" class="logo-image  mr-2">
+    <div class="flex justify-center">
+      <img src="{{ logoImagePath }}" alt="Logo" class="logo-image mr-2">
       <h1 class="text-xl font-sans font-medium text-gray-600">FilmBox</h1>
     </div>
+    <ion-buttons slot="end" class="mr-12">
+      <ion-button (mouseover)="showAccountPopup()" (mouseout)="hideAccountPopup()">
+        <ion-avatar slot="icon-only" class="account-avatar">
+          <img src="{{ accountProfileImagePath }}" alt="Account Profile">
+        </ion-avatar>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<div class="account-popup" *ngIf="showAccountPopupFlag">
+  <div class="absolute top-10 right-10 p-4">
+    <div class="bg-white shadow-md rounded-lg p-4">
+      <h2 class="text-xl font-sans font-semibold">Account Info</h2>
+      <p *ngIf="email" class="text-gray-600 font-sans mb-4">Email: {{ email }}</p>
+      <button class="bg-red-500 font-sans hover:bg-red-600 text-white px-4 py-2 rounded">Logout</button>
+    </div>
+  </div>
+</div>
+
 
 <ion-menu side="start" contentId="main-content">
   <div class="flex items-start  mt-9 ml-8 mb-4">
@@ -37,7 +55,5 @@
 </ion-menu>
 
 
-  <ion-router-outlet class="mt-20" id="main-content"></ion-router-outlet>
-
-
+  <ion-router-outlet class="mt-20  mx-4 md:mx-8 lg:mx-12 xl:mx-16" id="main-content"></ion-router-outlet>
 

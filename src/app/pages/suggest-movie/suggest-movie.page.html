@@ -1,16 +1,11 @@
-
-<ion-content fullscreen>
-  <ion-button expand="full" (click)="openForm()">
-    <ion-icon name="add"></ion-icon>
-    Suggest
-  </ion-button>
-
+<ion-content fullscreen (click)="closeForm()">
+  
 
   <div class="overflow-x-auto">
-    <table class="table-auto w-full">
+  <table class="table-auto w-full">
       <thead>
-        <tr>
-          <th class="px-4 py-2">Movie Type</th>
+        <tr class=" font-sans">
+          <th class="px-4 font-sans py-2">Movie Type</th>
           <th class="px-4 py-2">Reason</th>
           <th class="px-4 py-2">Image</th>
         </tr>
@@ -28,10 +23,14 @@
       </tbody>
     </table>
   </div>
-
-  <ion-card *ngIf="showForm" class="bg-white rounded-lg p-6">
-    <ion-card-header class="text-xl font-semibold mb-4">Suggestion Form</ion-card-header>
-    <ion-card-content>
+  <Button class="rounded-3xl w-full font-sans mt-6 py-3 bg-orange-500 text-white"  (click)="openForm($event)">
+    <ion-icon name="add"></ion-icon>
+    Suggest
+  </Button>
+  <div class="overlay" *ngIf="showForm">
+    <ion-card class="form-card" (click)="$event.stopPropagation()">
+      <ion-card-header class="text-xl font-sans font-semibold mb-4">Suggestion Form</ion-card-header>
+      <ion-card-content>
       <ion-item class="mb-4">
         <ion-label>Movie Type</ion-label>
         <ion-select [(ngModel)]="movieType" class="w-full">
@@ -51,7 +50,6 @@
         Submit
       </ion-button>
     </ion-card-content>
-  </ion-card>
-  
-  
+    </ion-card>
+  </div>
 </ion-content>

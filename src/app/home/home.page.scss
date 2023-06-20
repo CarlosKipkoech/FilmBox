@@ -28,6 +28,27 @@ ion-icon {
   color: rgb(229, 229, 229);
 }
 
+.account-popup{
+  
+  z-index:10;
+  
+}
+
+.account-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.account-avatar {
+  width: 32px;
+  height: 28px;
+}
+
+
+
+
+
 ion-menu {
   --ion-background-color: #053f5c;
   

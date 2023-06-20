@@ -12,7 +12,16 @@ export class HomePage {
   isSidebarExpanded = false;
   email!: string;
   logoImagePath = 'assets/images/logo.png';
+  accountProfileImagePath = 'assets/images/avatar.webp'
+  showAccountPopupFlag: boolean = false;
 
+
+  async ngOnInit() {
+    await this.storage.create(); // Initialize storage
+  
+    // Retrieve the email from local storage
+    this.email = await this.storage.get('email');
+  }
 
 
   //Handle click events for sidebar navigations
@@ -27,8 +36,14 @@ export class HomePage {
 
   }
 
-   toggleSidebar() {
-    this.isSidebarExpanded = !this.isSidebarExpanded;
+
+
+  showAccountPopup(): void {
+    this.showAccountPopupFlag = true;
+  }
+
+  hideAccountPopup(): void {
+    this.showAccountPopupFlag = false;
   }
 
 }

@@ -24,8 +24,13 @@ export class SuggestMoviePage implements OnInit {
     }
   }
 
-  openForm() {
+  openForm(event: Event) {
+    event.stopPropagation();
     this.showForm = true;
+  }
+
+  closeForm() {
+    this.showForm = false;
   }
 
   handleFileInput(event: any) {

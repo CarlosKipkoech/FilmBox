@@ -1,20 +1,20 @@
-<ion-content fullscreen class="ion-padding">
-  <ion-searchbar #searchBar placeholder="Search for a movie" (ionChange)="isTyping = searchBar.value?.trim() !== ''; searchBar.value && searchTerm.next(searchBar.value)"></ion-searchbar>
+<ion-content fullscreen  class="ion-padding">
+  <ion-searchbar class="rounded" #searchBar placeholder="Search for a movie" (ionChange)="isTyping = searchBar.value?.trim() !== ''; searchBar.value && searchTerm.next(searchBar.value)"></ion-searchbar>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-6 mt-6">
     <ng-container *ngIf="movies && movies.length > 0; else skeletonLoader">
       <!-- Display search results -->
-       <ion-card *ngFor="let movie of movies" class="bg-white">
+      <ion-card *ngFor="let movie of movies" class="bg-white">
         <div class="aspect-w-3 aspect-h-4">
-            <ion-img [src]="movie.Poster" alt="Movie Poster" class="object-cover w-full h-full"></ion-img>
-          </div>
-          <ion-card-header>
-            <ion-card-title class="text-xl font-bold">{{ movie.Title }}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p class="text-sm">{{ movie.Year }}</p>
-            <p class="text-sm">{{ movie.Type }}</p>
-          </ion-card-content>
+          <ion-img [src]="movie.Poster" alt="Movie Poster" class="object-cover w-full h-full"></ion-img>
+        </div>
+        <ion-card-header>
+          <ion-card-title class="text-xl font-bold">{{ movie.Title }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-sm">{{ movie.Year }}</p>
+          <p class="text-sm">{{ movie.Type }}</p>
+        </ion-card-content>
       </ion-card>
     </ng-container>
     <ng-template #skeletonLoader>
@@ -24,7 +24,11 @@
           <ion-skeleton-text animated style="height: 130px;"></ion-skeleton-text>
         </ion-card>
       </ng-container>
-      <p class="text-center" *ngIf="!isTyping">No results found.</p>
+   
     </ng-template>
   </div>
+
+  <ion-infinite-scroll (ionInfinite)="loadMoreMovies($event)">
+    <ion-infinite-scroll-content loadingText="Loading more results..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
